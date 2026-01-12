@@ -1,4 +1,4 @@
-import express, { type Request, type Response } from "express";
+import express from "express";
 import routesTelegram from "./src/routes/telegram.route.js";
 import dotenv from "dotenv";
 import { connectMongo } from "./src/configs/mongodb.js";

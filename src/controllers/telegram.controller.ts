@@ -47,7 +47,17 @@ export const telegramWebhook = async (req: Request<{}, {}, TelegramUpdate>, res:
         return res.sendStatus(200);
     }
 
-
+    if (text === '/me'){
+        const user = await UserModel.findOne({ chatId });
+        if (!user) {
+            return res.sendStatus(200);
+        }
+        await sendMessage(
+            chatId,
+            `👤 Thông tin của bạn:\n\n ID: ${user._id} - ${chatId} \n\n 🔗 LMS: ${user.lmsUrl}`
+        );
+        return res.sendStatus(200);
+    }
     // 3️⃣ Trường hợp khác
     await sendMessage(
         chatId,
