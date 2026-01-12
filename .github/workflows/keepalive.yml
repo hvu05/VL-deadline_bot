@@ -11,4 +11,5 @@ jobs:
     steps:
       - name: Ping Render service
         run: |
+          echo "Workflow Keep Render Awake chạy vào lúc: $(date)"
           curl -s https://vl-deadline-bot.onrender.com/telegram/check > /dev/null
