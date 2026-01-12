@@ -19,6 +19,11 @@ await axios.get(
 console.log("✅ Webhook set to:", WEBHOOK_URL);
 //================================ end ==============================
 
+// ============================= Cron Weakup ========================
+setInterval(() => {
+  fetch("https://vl-deadline-bot.onrender.com/telegram/check");
+}, 10 * 60 * 1000);
+// ============================= END ===============================
 app.use('/telegram', routesTelegram)
 
 await connectMongo();
