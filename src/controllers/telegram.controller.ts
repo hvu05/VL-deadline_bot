@@ -5,7 +5,6 @@ import UserModel from "../models/telegram.model.js";
 
 export const telegramWebhook = async (req: Request<{}, {}, TelegramUpdate>, res: Response) => {
 
-
     const update = req.body;
 
     if (!update.message || !update.message.text) {
