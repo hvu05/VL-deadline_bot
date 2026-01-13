@@ -59,11 +59,10 @@ export const telegramWebhook = async (
       await sendMessage(
         chatId,
         `👤 Thông tin của bạn:\n
-        🆔 ID: ${user._id}
-        💬 ChatId: ${chatId}
-        👤 Tên: ${user.userName ?? "Chưa đặt"}
-        🔗 LMS: ${user.lmsUrl ?? "Chưa có"}
-        📢 Nhận thông báo: ${user.isActive ? "Bật" : "Tắt"}`
+    🆔 ID: ${user._id}
+    💬 ChatId: ${chatId}
+    🔗 LMS: ${user.lmsUrl ?? "Chưa có"}
+    📢 Nhận thông báo: ${user.isActive ? "Bật" : "Tắt"}`
       );
       return res.sendStatus(200);
     }
@@ -97,31 +96,31 @@ export const telegramWebhook = async (
       return res.sendStatus(200);
     }
 
-    // 6️⃣ /name <username>
-    case textTrim.startsWith("/name "): {
-      const username = textTrim.replace("/name", "").trim();
+    // // 6️⃣ /name <username>
+    // case textTrim.startsWith("/name "): {
+    //   const username = textTrim.replace("/name", "").trim();
 
-      if (!username) {
-        await sendMessage(chatId, "❌ Vui lòng nhập tên.\nVí dụ: `/name Vũ`");
-        return res.sendStatus(200);
-      }
+    //   if (!username) {
+    //     await sendMessage(chatId, "❌ Vui lòng nhập tên.\nVí dụ: `/name Vũ`");
+    //     return res.sendStatus(200);
+    //   }
 
-      await UserModel.findOneAndUpdate(
-        { chatId },
-        { $set: { username } },
-        {
-          upsert: true,
-          new: true,
-          setDefaultsOnInsert: true,
-        }
-      );
+    //   await UserModel.findOneAndUpdate(
+    //     { chatId },
+    //     { $set: { username } },
+    //     {
+    //       upsert: true,
+    //       new: true,
+    //       setDefaultsOnInsert: true,
+    //     }
+    //   );
 
-      await sendMessage(
-        chatId,
-        `✅ Đã cập nhật tên của bạn thành: **${username}**`
-      );
-      return res.sendStatus(200);
-    }
+    //   await sendMessage(
+    //     chatId,
+    //     `✅ Đã cập nhật tên của bạn thành: **${username}**`
+    //   );
+    //   return res.sendStatus(200);
+    // }
 
     // 7️⃣ Default
     default: {
